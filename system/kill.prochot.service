@@ -1,0 +1,9 @@
+[Unit]
+Description=auto prochot killer
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/prochot.sh
+
+[Install]
+WantedBy=multi-user.target
