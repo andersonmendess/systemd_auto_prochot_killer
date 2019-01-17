@@ -1,9 +1,10 @@
 [Unit]
 Description=auto prochot killer
+After=suspend.target
 
 [Service]
 Type=simple
 ExecStart=/usr/local/bin/prochot.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target sleep.target
