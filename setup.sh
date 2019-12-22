@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-os=`cat /etc/os-release | grep 'ID_LIKE' | sed "s/ID_LIKE=//"`
+os=$(grep '^ID_LIKE=' /etc/os-release | sed "s/ID_LIKE=//")
+if [ ! $os ]; then
+	os=$(grep '^ID=' /etc/os-release | sed "s/ID=//")
+fi
 
 echo "Detecting SO"
 sleep 1s
@@ -13,7 +16,7 @@ elif [ $os == "arch" ]
 	then
 		echo "Arch Detected..."
 		sleep 2s
-		sudo pacman -S msr-tools -y
+		sudo pacman -S msr-tools --noconfirm
 else
 	echo "WARN: unknown SO... Please install the msr-tools package manually"
 fi
